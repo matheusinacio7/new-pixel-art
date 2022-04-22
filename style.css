@@ -8,13 +8,13 @@ body {
 }
 
 main {
-  flex: 1;
-}
-
-.square {
-  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100vw;
   box-sizing: border-box;
-  cursor: pointer;
+  align-items: center;
+  flex: 1;
 }
 
 .board {
@@ -23,12 +23,30 @@ main {
   user-select: none;
 }
 
+.canvas {
+  display: flex;
+}
+
 .row {
   display: flex;
 }
 
-.canvas {
-  display: flex;
+.square {
+  border-style: solid;
+  border-color: black;
+  border-width: 0;
+  border-left-width: 1px;
+  border-top-width: 1px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.square:last-child {
+  border-right-width: 1px;
+}
+
+.row:last-child .square {
+  border-bottom-width: 1px;
 }
 
 .color-picker {
