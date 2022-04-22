@@ -14,13 +14,25 @@ main {
 .square {
   border: 1px solid black;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .board {
   display: flex;
   flex-direction: column;
+  user-select: none;
 }
 
 .row {
   display: flex;
+}
+
+.canvas {
+  display: flex;
+}
+
+.color-picker {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
 }
