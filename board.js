@@ -1,15 +1,15 @@
 class Board {
-  constructor({ columns, rows, canvas, defaultColor, squareSize }) {
+  constructor({ columns, rows, canvas, defaultColor, selector, squareSize }) {
     this.columnCount = columns;
     this.rowCount = rows;
     this.canvas = canvas;
     this.defaultColor = defaultColor;
+    this.board = document.querySelector(selector);
     this.squareSize = squareSize;
   }
 
-  render(selector) {
-    const board = document.querySelector(selector);
-    board.classList.add('board');
+  render() {
+    this.board.classList.add('board');
     for (let i = 0; i < this.rowCount; i++) {
       const row = document.createElement('section');
       row.classList.add('row');
@@ -22,9 +22,14 @@ class Board {
 
         row.appendChild(square);
       }
-      board.appendChild(row);
+      this.board.appendChild(row);
     }
 
-    return board;
+    return this.board;
+  }
+
+  reset() {
+    this.board.innerHTML = '';
+    this.render();
   }
 }

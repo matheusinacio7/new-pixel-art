@@ -11,6 +11,7 @@ const board = new Board({
   canvas,
   defaultColor: 'white',
   squareSize: 40,
+  selector: '#board',
 });
 
-board.render('#board');
+board.render();
