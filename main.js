@@ -44,3 +44,10 @@ function changeColorCount(event) {
 
 document.getElementById('color-count-form').addEventListener('submit', changeColorCount);
 
+function handleAddNewColor(event) {
+  const newColor = document.getElementById('new-color-input').value;
+  canvas.setNewColor(newColor);
+  event.preventDefault();
+}
+
+document.getElementById('new-color').addEventListener('submit', handleAddNewColor);

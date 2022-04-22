@@ -1,7 +1,9 @@
 class Canvas {
   constructor({ colors, defaultColor, selector }) {
     this.activeColor = defaultColor;
+    this.newSwapColor = null;
     this.colors = colors;
+    this.colorPickers = [];
     this.container = document.querySelector(selector);
     this.container.classList.add('canvas');
   }
@@ -20,6 +22,17 @@ class Canvas {
     this.render();
   }
 
+  changeColor(newColor, index) {
+    this.colors[index] = newColor;
+    this.colorPickers[index].style.backgroundColor = newColor;
+    this.render();
+    this.newColor = null;
+  }
+
+  setNewColor(newColor) {
+    this.newColor = newColor;
+  }
+
   getActiveColor() {
     return this.activeColor;
   }
@@ -27,14 +40,20 @@ class Canvas {
   render() {
     this.container.classList.add('color-pickers');
     this.container.innerHTML = '';
+    this.colorPickers = [];
 
-    this.colors.forEach((color) => {
+    this.colors.forEach((color, index) => {
       const colorPicker = document.createElement('div');
       colorPicker.classList.add('color-picker');
       colorPicker.style.backgroundColor = color;
       colorPicker.addEventListener('click', () => {
-        this.changeActiveColor(color);
+        if (this.newColor) {
+          this.changeColor(this.newColor, index);
+        } else {
+          this.changeActiveColor(color);
+        }
       });
+      this.colorPickers.push(colorPicker);
       this.container.appendChild(colorPicker);
     });
 
