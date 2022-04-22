@@ -32,20 +32,23 @@ main {
 }
 
 .square {
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.square.gridded {
   border-style: solid;
   border-color: black;
   border-width: 0;
   border-left-width: 1px;
   border-top-width: 1px;
-  box-sizing: border-box;
-  cursor: pointer;
 }
 
-.square:last-child {
+.square.gridded:last-child {
   border-right-width: 1px;
 }
 
-.row:last-child .square {
+.row:last-child .square.gridded {
   border-bottom-width: 1px;
 }
 

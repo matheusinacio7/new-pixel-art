@@ -14,6 +14,7 @@ const board = new Board({
   squareSize: 40,
   selector: '#board',
   cursor,
+  gridded: true,
 });
 
 board.render();

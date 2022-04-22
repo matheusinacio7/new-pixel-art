@@ -7,15 +7,13 @@ class Square {
     this.canvas = canvas;
     this.cursor = cursor;
     this.element = null;
-  }
-
-  setColor(newColor) {
-    this.color = newColor;
+    this.gridded = false;
   }
 
   render() {
     const element = document.createElement('div');
     element.classList.add('square');
+    element.classList.toggle('gridded', this.gridded);
     element.style.height = `${this.height}px`;
     element.style.width = `${this.width}px`;
     element.style.backgroundColor = this.color;
@@ -37,5 +35,16 @@ class Square {
 
     this.element = element;
     return element;
+  }
+
+  setColor(newColor) {
+    this.color = newColor;
+  }
+
+  setGrid(hasGrid) {
+    this.gridded = hasGrid;
+    if (this.element) {
+      this.element.classList.toggle('gridded', hasGrid);
+    }
   }
 }

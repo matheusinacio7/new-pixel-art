@@ -1,12 +1,24 @@
 class Board {
-  constructor({ columns, rows, canvas, defaultColor, selector, squareSize, cursor }) {
+  constructor({ columns, rows, gridded, canvas, defaultColor, selector, squareSize, cursor }) {
     this.columnCount = columns;
     this.rowCount = rows;
     this.canvas = canvas;
+    this.gridded = gridded;
     this.cursor = cursor;
     this.defaultColor = defaultColor;
     this.board = document.querySelector(selector);
     this.squareSize = squareSize;
+    this.squares = Array.from(Array(rows), () => Array(columns).fill(null));
+  }
+
+  toggleGrid(gridded) {
+    this.gridded = gridded;
+
+    this.squares
+      .reduce((acc, row) => [...acc, ...row], [])
+      .forEach((square) => {
+        square.setGrid(this.gridded);
+      });
   }
 
   render() {
@@ -20,9 +32,12 @@ class Board {
           defaultColor: this.defaultColor,
           size: this.squareSize,
           cursor: this.cursor,
-        }).render();
+        });
+        square.setGrid(true);
 
-        row.appendChild(square);
+        this.squares[i][j] = square;
+
+        row.appendChild(square.render());
       }
       this.board.appendChild(row);
     }
