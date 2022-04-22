@@ -14,11 +14,10 @@ class Canvas {
     const delta = newSize - this.colors.length;
     if (delta < 0) {
       this.colors = this.colors.slice(0, newSize);
-      this.render();
     } else {
       this.colors = [...this.colors, ...Array(delta).fill(this.defaultColor)];
-      this.render();
     }
+    this.render();
   }
 
   getActiveColor() {
