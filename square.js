@@ -1,9 +1,10 @@
 class Square {
-  constructor({ size, defaultColor, canvas }) {
+  constructor({ size, defaultColor, canvas, cursor }) {
     this.color = defaultColor;
     this.height = size;
     this.width = size;
     this.canvas = canvas;
+    this.cursor = cursor;
     this.element = null;
   }
 
@@ -18,8 +19,10 @@ class Square {
     element.style.width = `${this.width}px`;
     element.style.backgroundColor = this.color;
 
-    element.addEventListener('click', () => {
-      element.style.backgroundColor = this.canvas.getActiveColor();
+    element.addEventListener('mouseenter', () => {
+      if (this.cursor.isActive) {
+        element.style.backgroundColor = this.canvas.getActiveColor();
+      }
     });
 
     this.element = element;

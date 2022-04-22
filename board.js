@@ -1,8 +1,9 @@
 class Board {
-  constructor({ columns, rows, canvas, defaultColor, selector, squareSize }) {
+  constructor({ columns, rows, canvas, defaultColor, selector, squareSize, cursor }) {
     this.columnCount = columns;
     this.rowCount = rows;
     this.canvas = canvas;
+    this.cursor = cursor;
     this.defaultColor = defaultColor;
     this.board = document.querySelector(selector);
     this.squareSize = squareSize;
@@ -18,6 +19,7 @@ class Board {
           canvas: this.canvas,
           defaultColor: this.defaultColor,
           size: this.squareSize,
+          cursor: this.cursor,
         }).render();
 
         row.appendChild(square);

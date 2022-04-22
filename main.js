@@ -4,6 +4,7 @@ const canvas = new Canvas({
 });
 
 canvas.render('#canvas');
+const cursor = new Cursor();
 
 const board = new Board({
   columns: 10,
@@ -12,6 +13,7 @@ const board = new Board({
   defaultColor: 'white',
   squareSize: 40,
   selector: '#board',
+  cursor,
 });
 
 board.render();
