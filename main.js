@@ -1,6 +1,10 @@
 const canvas = new Canvas();
-const square = new Square({ defaultColor: 'white', size: 30, canvas });
+const board = new Board({
+  columns: 10,
+  rows: 10,
+  canvas,
+  defaultColor: 'white',
+  squareSize: 40,
+});
 
-document
-  .getElementById('teste-legal')
-  .appendChild(square.render());
+board.render('#board');

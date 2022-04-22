@@ -13,4 +13,14 @@ main {
 
 .square {
   border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
 }
