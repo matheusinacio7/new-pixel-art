@@ -21,6 +21,7 @@ class Square {
     element.addEventListener('click', () => {
       element.style.backgroundColor = this.canvas.getActiveColor();
     });
+
     this.element = element;
     return element;
   }
