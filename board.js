@@ -11,6 +11,17 @@ class Board {
     this.squares = Array.from(Array(rows), () => Array(columns).fill(null));
   }
 
+  export() {
+    const grid = this.squares.map((row) => row.map((square) => square.color));
+    const json = JSON.stringify(grid, null, 2);
+    const downloadFileElement = document.createElement('a');
+    downloadFileElement.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(json);
+    downloadFileElement.download = 'myPixelArt.json';
+    document.body.appendChild(downloadFileElement);
+    downloadFileElement.click();
+    document.body.removeChild(downloadFileElement);
+  }
+
   toggleGrid(gridded) {
     this.gridded = gridded;
 

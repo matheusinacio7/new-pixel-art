@@ -30,7 +30,7 @@ class Square {
         'left': this.canvas.getActiveColor(),
       };
 
-      element.style.backgroundColor = newColors[activeButton];
+      this.setColor.bind(this)(newColors[activeButton]);
     });
 
     this.element = element;
@@ -39,6 +39,7 @@ class Square {
 
   setColor(newColor) {
     this.color = newColor;
+    this.element.style.backgroundColor = newColor;
   }
 
   setGrid(hasGrid) {
