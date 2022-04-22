@@ -16,8 +16,6 @@ class Cursor {
   handleMouseDown(event) {
     if (event.button === 0) {
       this.setDown.bind(this)('left');
-      event.preventDefault();
-      return false;
     }
   }
 

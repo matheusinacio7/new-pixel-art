@@ -1,20 +1,33 @@
 class Canvas {
-  constructor({ colors, defaultColor }) {
+  constructor({ colors, defaultColor, selector }) {
     this.activeColor = defaultColor;
     this.colors = colors;
+    this.container = document.querySelector(selector);
+    this.container.classList.add('canvas');
   }
 
   changeActiveColor(newColor) {
     this.activeColor = newColor;
   }
 
+  changeCanvasSize(newSize) {
+    const delta = newSize - this.colors.length;
+    if (delta < 0) {
+      this.colors = this.colors.slice(0, newSize);
+      this.render();
+    } else {
+      this.colors = [...this.colors, ...Array(delta).fill(this.defaultColor)];
+      this.render();
+    }
+  }
+
   getActiveColor() {
     return this.activeColor;
   }
 
-  render(selector) {
-    const container = document.querySelector(selector);
-    container.classList.add('canvas');
+  render() {
+    this.container.classList.add('color-pickers');
+    this.container.innerHTML = '';
 
     this.colors.forEach((color) => {
       const colorPicker = document.createElement('div');
@@ -23,9 +36,9 @@ class Canvas {
       colorPicker.addEventListener('click', () => {
         this.changeActiveColor(color);
       });
-      container.appendChild(colorPicker);
+      this.container.appendChild(colorPicker);
     });
 
-    return container;
+    return this.container;
   }
 }

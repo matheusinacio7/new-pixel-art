@@ -27,7 +27,18 @@
       <span>Grid: </span>
       <input type="checkbox" onchange="board.toggleGrid(this.checked)" id="toggle-grid" value="off" checked>
     </label>
-    <div id="canvas"></div>
+    <div>
+      <section>
+        <form class="color-count" id="color-count-form">
+          <label for="color-count-input">
+            <span>Numero de cores: </span>
+            <input type="number" id="color-count-input">
+          </label>
+          <button>Aplicar</button>
+        </form>
+      </section>
+      <section id="canvas"></section>
+    </div>
     <div id="board"></div>
   </main>
   <footer>

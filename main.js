@@ -1,9 +1,10 @@
 const canvas = new Canvas({
   defaultColor: 'black',
   colors: ['black', 'red', 'green', 'yellow'],
+  selector: '#canvas',
 });
 
-canvas.render('#canvas');
+canvas.render();
 const cursor = new Cursor();
 
 const board = new Board({
@@ -31,3 +32,15 @@ function handleFileUpload(event) {
 }
 
 document.getElementById('form-submit').addEventListener('submit', handleFileUpload);
+
+function changeColorCount(event) {
+  const newCount = document.getElementById('color-count-input').value;
+  if (newCount < 1 || newCount > 20) {
+    return;
+  }
+  canvas.changeCanvasSize(newCount);
+  event.preventDefault();
+}
+
+document.getElementById('color-count-form').addEventListener('submit', changeColorCount);
+
