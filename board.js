@@ -10,6 +10,10 @@ class Board {
     this.squareSize = squareSize;
     this.squares = Array.from(Array(rows), () => Array(columns).fill(null));
   }
+  
+  clear() {
+    this.board.innerHTML = '';
+  }
 
   export() {
     const grid = this.squares.map((row) => row.map((square) => square.color));
@@ -22,6 +26,12 @@ class Board {
     document.body.removeChild(downloadFileElement);
   }
 
+  load(jsonText) {
+    const loadedSquares = JSON.parse(jsonText);
+    this.clear();
+    this.render(loadedSquares);
+  }
+
   toggleGrid(gridded) {
     this.gridded = gridded;
 
@@ -32,7 +42,7 @@ class Board {
       });
   }
 
-  render() {
+  render(loadedSquares) {
     this.board.classList.add('board');
     for (let i = 0; i < this.rowCount; i++) {
       const row = document.createElement('section');
@@ -45,6 +55,9 @@ class Board {
           cursor: this.cursor,
         });
         square.setGrid(true);
+        if (loadedSquares) {
+          square.color = loadedSquares[i][j];
+        }
 
         this.squares[i][j] = square;
 
@@ -57,7 +70,7 @@ class Board {
   }
 
   reset() {
-    this.board.innerHTML = '';
+    this.clear();
     this.render();
   }
 }

@@ -16,6 +16,13 @@
   <main>
     <button onclick="board.reset()">Limpar canvas</button>
     <button onclick="board.export()">Exportar desenho</button>
+    <form id="form-submit">
+      <label for="file-upload">
+        <span>Suba um arquivo: </span>
+        <input type="file" id="file-upload" accept="text/json, application/json">
+      </label>
+      <button type="submit">Carregar</button>
+    </form>
     <label for="toggle-grid">
       <span>Grid: </span>
       <input type="checkbox" onchange="board.toggleGrid(this.checked)" id="toggle-grid" value="off" checked>

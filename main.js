@@ -18,3 +18,16 @@ const board = new Board({
 });
 
 board.render();
+
+function handleFileUpload(event) {
+  const file = document.getElementById('file-upload').files[0];
+  const reader = new FileReader();
+  reader.readAsText(file, 'utf-8');
+  reader.onload = function(event) {
+    const resultJsonString = event.target.result;
+    board.load(resultJsonString);
+  }
+  event.preventDefault();
+}
+
+document.getElementById('form-submit').addEventListener('submit', handleFileUpload);
